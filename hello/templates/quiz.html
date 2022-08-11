@@ -1,0 +1,82 @@
+{% extends "newbase.html" %}
+{% load static %}
+
+{% block title %}
+Quiz App
+{% endblock %}
+
+
+{% block content %}
+<!--{{answers}}-->
+<form method="post">
+    <input name="qno" type="hidden" value="{{qno}}">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <center><h1 style="background-color:blue;">Quiz App</h1></center>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{showqno}} ) {{question.question}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>A {{question.op1}} <input class="form-check-input form-control" name="option" required type="radio"
+                                                 value="a"></label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="col-sm-6">
+                <label>B {{question.op2}} <input class="form-check-input form-control" name="option" required type="radio"
+                                                 value="b"></label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>C {{question.op3}} <input class="form-check-input form-control" name="option"
+                                                 required type="radio"
+                                                 value="c"></label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="col-sm-6">
+                <label>D {{question.op4}} <input class="form-check-input form-control" name="option" required type="radio"
+                                                 value="d"></label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <input class="btn btn-primary form-control" type="submit" value="Submit">
+            </div>
+
+        </div>
+        <input name="totalmarks" type="hidden" value="{{totalmarks}}">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>Given answer {{givenanswer}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <h2>Correct answer {{correctanswer}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <h2>Result {{result}}</h2>
+            </div>
+
+        </div>
+    </div>
+</form>
+</div>
+
+
+{% endblock %}

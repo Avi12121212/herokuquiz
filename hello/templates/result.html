@@ -1,0 +1,40 @@
+{% extends "newbase.html" %}
+{% load static %}
+
+{% block title %}
+Quiz Result
+{% endblock %}
+
+
+{% block content %}
+<form method="POST">
+<center><h1 style="background-color:lightpink;"> Result </h1></center>
+<div>
+    <div class ="container">
+        {% for data in answers %}
+        <div class = "row">
+<!--            <div class = "col">-->
+            <label><h1 style="background-color:lightgreen;">Que No.{{data.qno}}</h1></label>
+<!--            </div>-->
+
+        </div>
+
+        <div class = "row">
+            <div class="col-sm-6">
+                <label><h3 style="background-color:lightred;">Your Answer is... {{data.answer}} </h3></label>
+            </div>
+
+            <div class="col-sm-6">
+                <label><h3 style="background-color:Lightgreen;">Correct Answer is...{{data.correct}} </h3></label>
+            </div>
+        </div>
+          {% endfor %}
+        <div class = "row">
+            <label><h2 style="background-color:Grey;">Total Marks Obtained...{{totalmarks}} out of 5</h2></label>
+        </div>
+
+    </div>
+    <input type="submit" value="Logout" >
+</div>
+</form>
+{% endblock %}
