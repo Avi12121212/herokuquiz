@@ -96,6 +96,7 @@ def login(request):
 # <<<---- Login Page Ends Here ---->>
 
 def quiz(request):
+
     answers = request.session.get("answers")
     if answers == None:
         answers = []
@@ -112,6 +113,7 @@ def quiz(request):
           "op3": "Python Web Framework", "op4": "None", "correct": "c"}
     questions = [q1, q2, q3, q4, q5]
     questionno = 0
+    q=questionno
     givenanswer = ""
     correctanswer = ""
     result = ""
@@ -121,7 +123,9 @@ def quiz(request):
             del request.session["answers"]
         except:
             pass
+
     if request.POST:
+        questionno = int(request.POST["qno"])
         givenanswer = request.POST["option"]
         questionno = int(request.POST["qno"])
         totalmarks = int(request.POST["totalmarks"])
@@ -129,14 +133,16 @@ def quiz(request):
         questionno += 1
         totalmarks += 1
         result = "Yes"
+        q=questionno
 
+        print(questionno)
         if givenanswer != correctanswer:
             result = "No"
             totalmarks -= 1
-        data = {"qno": (questionno - 1), "answer": givenanswer, "correct": correctanswer, "result": result}
-        answers.append(data)
-        if questionno >= len(questions):
-            return render(request, 'result.html', {"totalmarks": totalmarks,
+            data = {"qno": (questionno - 1), "answer": givenanswer, "correct": correctanswer, "result": result}
+            answers.append(data)
+            if questionno >= len(questions):
+                return render(request, 'result.html', {"totalmarks": totalmarks,
                                                    "answers": answers})
     # return httpResponse('python quiz!')
     request.session["answers"] = answers
